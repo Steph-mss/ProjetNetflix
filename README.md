@@ -1,125 +1,171 @@
-🎬 MoovFlix - Plateforme de Streaming Animée
+# 🎬 MoovFlix – Plateforme de Streaming Animée
 
-Ce projet a été développé dans le cadre du TP de Développement Back-End pour l'Efrei par Jawad Labed et Steven Simonis.
+MoovFlix est une plateforme de streaming inspirée de Netflix, développée dans le cadre du TP de Développement Back-End à l’Efrei par **Jawad Labed** et **Steven Simonis**.
 
-C'est une application complète de streaming de style Netflix, conçue autour d'une architecture moderne découpée en deux services principaux : un Frontend React/Vite et un Backend Node.js/Express/Prisma.
+Le projet repose sur une architecture moderne composée d’un **Frontend React/Vite** et d’un **Backend Node.js/Express/Prisma**, offrant une expérience complète : authentification, gestion du catalogue, favoris, et administration.
 
-⚙️ Architecture du Projet
+---
 
-Le projet est organisé en deux dossiers principaux :
+## ⚙️ Architecture du Projet
 
-stream-api/: Le serveur Node.js/Express (API REST et GraphQL).
+La structure du projet est organisée autour de deux dossiers principaux :
 
-streaming/: L'interface utilisateur React/Vite (Frontend).
+```
+stream-api/     → Backend (Node.js, Express, Prisma, MongoDB)
+streaming/      → Frontend (React, Vite)
+```
 
-🚀 1. Démarrage du Backend (stream-api/)
+---
 
-Ce service gère l'authentification (JWT), les données (PostgreSQL/Prisma) et les favoris (MongoDB).
+# 🚀 1. Backend – `stream-api/`
 
-Prérequis
+Le Backend gère :
 
-Node.js (version 18 ou supérieure)
+* L’authentification (JWT)
+* Les données (Films, Séries, Utilisateurs) via **PostgreSQL + Prisma**
+* Les favoris via **MongoDB + Mongoose**
+* La documentation API via **Swagger**
+* Une API **REST** & **GraphQL**
 
-Un serveur PostgreSQL en cours d'exécution (pour les films, séries, utilisateurs).
+---
 
-Un serveur MongoDB en cours d'exécution (pour les favoris).
+## 📦 Prérequis
 
-Un fichier .env configuré (voir l'étape 3).
+* **Node.js 18+**
+* **PostgreSQL** en cours d'exécution
+* **MongoDB** en cours d'exécution
+* Un fichier **`.env`** configuré (voir ci-dessous)
 
-Étape 1 : Installation et Configuration
+---
 
-Ouvrez un terminal dans le dossier stream-api/ :
+## 🔧 Étape 1 : Installation
 
+Dans le dossier `stream-api/` :
+
+```bash
 npm install
+```
 
+---
 
-Étape 2 : Configuration des Bases de Données
+## 🗃️ Étape 2 : Configuration du fichier `.env`
 
-Vous devez créer un fichier .env à la racine de stream-api/ avec les variables suivantes :
+Créez un fichier `.env` à la racine de `stream-api/` :
 
+```
 # --- Base de données PostgreSQL (Prisma) ---
 DATABASE_URL="postgresql://[USER]:[PASSWORD]@localhost:5432/[NOM_BDD]?schema=public"
 
 # --- Base de données MongoDB (Mongoose) ---
 MONGO_URL="mongodb://localhost:27017/animeflix_db"
 
-# --- Sécurité JWT ---
+# --- JWT (sécurité) ---
 JWT_SECRET="VOTRE_CLE_SECRETE_POUR_ACCESS_TOKEN"
 JWT_EXPIRES_IN="1h"
+
 JWT_REFRESH_SECRET="VOTRE_CLE_SECRETE_POUR_REFRESH_TOKEN"
 JWT_REFRESH_EXPIRES_IN="7d"
+```
 
+---
 
-Étape 3 : Initialisation du Schéma (Prisma)
+## 🧱 Étape 3 : Migration Prisma
 
-Appliquez le schéma Prisma à votre base de données PostgreSQL :
+Initialisez le schéma PostgreSQL :
 
+```bash
 npx prisma migrate dev
 npx prisma generate
+```
 
+---
 
-Étape 4 : Lancement du Serveur
+## ▶️ Étape 4 : Démarrer le serveur
 
+```bash
 npm run dev
+```
 
+Le serveur démarre sur :
+👉 **[http://localhost:4000](http://localhost:4000)**
 
-Le serveur démarrera sur http://localhost:4000.
+Documentation Swagger :
+👉 **[http://localhost:4000/api-docs](http://localhost:4000/api-docs)**
 
-Vous pouvez accéder à la documentation complète de l'API (Swagger) ici :
-➡️ http://localhost:4000/api-docs
+---
 
-💻 2. Démarrage du Frontend (streaming/)
+# 💻 2. Frontend – `streaming/`
 
-Ce service est l'interface utilisateur React qui communique avec le Backend via Axios.
+Le Frontend est développé avec **React + Vite** et communique avec l’API via **Axios**.
 
-Prérequis
+---
 
-Le serveur Backend (stream-api/) doit être lancé (étape 4 précédente).
+## 📦 Prérequis
 
-Étape 1 : Installation
+* Le Backend doit être lancé (voir étape précédente)
 
-Ouvrez un NOUVEAU terminal et naviguez vers le dossier streaming/ :
+---
 
+## 🔧 Étape 1 : Installation
+
+Dans un nouveau terminal, positionnez-vous dans `streaming/` :
+
+```bash
 npm install
+```
 
+---
 
-Étape 2 : Lancement
+## ▶️ Étape 2 : Lancement du Frontend
 
-Lancez l'application de développement Vite :
-
+```bash
 npm run dev
+```
+
+L’application démarre sur :
+👉 **[http://localhost:5174](http://localhost:5174)** (ou un autre port disponible)
+
+---
+
+## ✨ Fonctionnalités principales du Frontend
+
+* 🔐 **Authentification** : inscription & connexion
+* 🎞️ **Catalogue dynamique** des films et séries depuis PostgreSQL
+* ⭐ **Gestion des Favoris** (ajout / suppression via MongoDB)
+* 🛡️ **Panneau Admin** (`/admin`) :
+
+  * Ajouter / supprimer Films & Séries
+  * Routes sécurisées
+
+---
+
+# 🛠️ Commandes Utiles (Backend)
+
+| Commande              | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| `npm run dev`         | Lance le serveur en mode développement (nodemon)         |
+| `npm test`            | Exécute les tests Jest/Supertest                         |
+| `npx prisma studio`   | Ouvre l’interface visuelle de gestion PostgreSQL         |
+| `npx prisma generate` | Met à jour le client Prisma après modification du schéma |
+
+---
+
+# 📚 Technologies Utilisées
+
+### Backend
+
+* Node.js / Express
+* PostgreSQL / Prisma
+* MongoDB / Mongoose
+* JWT Auth
+* Swagger
+* GraphQL
+
+### Frontend
+
+* React
+* Vite
+* Axios
+* React Router
 
 
-Le Frontend démarrera sur http://localhost:5174 (ou un port disponible).
-
-Fonctionnalités Clés du Frontend
-
-Authentification : Inscription et Connexion.
-
-Contenu Dynamique : Catalogue de Films et Séries affiché depuis la BDD.
-
-Gestion des Favoris : Ajout/Suppression des médias (via MongoDB).
-
-Panneau Admin : Route protégée (/admin) pour ajouter et supprimer des Films/Séries (via PostgreSQL).
-
-🛠️ Commandes Utiles (pour le Backend)
-
-Commande
-
-Description
-
-npm run dev
-
-Lance le serveur en mode développement (avec nodemon).
-
-npm test
-
-Exécute tous les tests d'intégration (Jest/Supertest).
-
-npx prisma studio
-
-Ouvre l'interface visuelle pour gérer les données PostgreSQL.
-
-npx prisma generate
-
-Met à jour le client Prisma après modification du schéma.

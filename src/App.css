@@ -1,0 +1,430 @@
+/* --- Navbar --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Effet de dégradé en haut */
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0));
+  transition: background-color 0.3s ease;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-right: 25px;
+}
+
+.navbar-links a {
+  margin-left: 20px;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.navbar-links a:hover {
+  color: #b3b3b3;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-profile span {
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+.profile-link, .logout-button {
+  margin-left: 10px;
+}
+
+.logout-button, .login-button-nav {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover, .login-button-nav:hover {
+  background-color: #f40612;
+}
+
+/* --- Page de Connexion (Login) --- */
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* Image de fond (à remplacer par une vraie) */
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('via.placeholder.com/1920x1080?text=Fond+Style+Netflix');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-form-container {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 60px 68px 40px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-form-container h2 {
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #333;
+  color: white;
+}
+
+.login-button {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.login-button:disabled {
+  background-color: #888;
+}
+
+.error-message {
+  color: #ffa00a;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.login-help {
+  color: #b3b3b3;
+}
+.login-help a {
+  color: white;
+  font-weight: 500;
+}
+.login-help a:hover {
+  text-decoration: underline;
+}
+
+/* --- Page d'Accueil (Home) & MovieList --- */
+.home-page {
+  padding-top: 80px; /* Pour laisser de la place à la Navbar fixe */
+  padding-bottom: 50px; /* Espace en bas */
+}
+
+/* Le "Hero" (grand film en haut) */
+.hero-banner {
+  height: 56.25vw; /* Format 16:9 */
+  max-height: 800px;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.7) 30%, transparent), url('https://via.placeholder.com/1600x900?text=Hero+Banner');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+  margin-bottom: 30px; /* Espace avant la première liste */
+}
+
+.hero-banner h1 {
+  font-size: 3.5rem;
+  max-width: 50%;
+}
+.hero-banner p {
+  font-size: 1.2rem;
+  max-width: 50%;
+  margin-top: 20px;
+}
+
+/* Listes de films */
+.movie-list {
+  margin-left: 50px; /* Aligné avec la navbar */
+  margin-top: 30px;
+}
+
+.movie-list h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.movie-row {
+  display: flex;
+  overflow-x: scroll; /* <-- Le scroll horizontal */
+  overflow-y: hidden;
+  padding-bottom: 20px; /* Espace pour l'ombre/hover */
+}
+
+/* Cache la barre de scroll */
+.movie-row::-webkit-scrollbar {
+  display: none;
+}
+.movie-row {
+  -ms-overflow-style: none;  /* IE et Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+/* --- Movie Card --- */
+.movie-card {
+  flex-shrink: 0; /* Empêche les cartes de se tasser */
+  width: 250px; /* Largeur de la carte */
+  margin-right: 10px;
+  background-color: var(--card-background);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 140px; /* Hauteur fixe pour l'image */
+  object-fit: cover;
+}
+
+.movie-card-info {
+  padding: 10px;
+}
+
+.movie-card-info h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Effet de survol style Netflix */
+.movie-card:hover {
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* --- Page de Profil --- */
+.profile-page {
+  padding: 100px 50px;
+}
+.profile-page h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.profile-page h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+/* Pour que les MovieCards dans le profil n'aient pas l'effet de scroll */
+.favorites-grid .movie-card {
+  width: 100%;
+  margin-right: 0;
+}
+
+.favorites-grid .movie-card img {
+  height: 280px;
+}
+.hero-banner h1 {
+  font-size: 3.5em; /* Grande taille pour le titre */
+  margin-bottom: 20px;
+}
+
+.hero-banner p {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+.hero-button {
+  background-color: #e50914; /* Rouge Netflix */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #ff0b17;
+}
+
+/* Assurez-vous que le corps de la page n'a pas de padding qui pousserait le banner */
+body {
+  margin: 0;
+  background-color: #141414; /* Fond sombre */
+  color: #fff; /* Texte blanc par défaut */
+}
+
+/* Assurez-vous que votre Navbar ne recouvre pas le HeroBanner */
+.navbar {
+  position: fixed; /* Rendre la navbar fixe */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Assurez-vous qu'elle est au-dessus du reste */
+  background-color: rgba(20, 20, 20, 0.8); /* Fond semi-transparent */
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Ajuster le contenu principal pour ne pas être sous la navbar */
+.home-page {
+  padding-top: 80px; /* Espace pour la navbar fixe */
+}
+
+/* Réduire le padding des movie-list pour qu'elles se rapprochent des bords */
+.movie-list {
+  padding: 20px 5%;
+}
+
+.movie-list h2 {
+  margin-bottom: 20px;
+}
+
+.movie-row {
+  display: flex;
+  overflow-x: auto; /* Permet le défilement horizontal */
+  gap: 15px; /* Espacement entre les cartes */
+  padding-bottom: 15px; /* Pour le scrollbar */
+}
+
+.movie-card {
+  flex-shrink: 0; /* Empêche les cartes de rétrécir */
+  width: 200px; /* Largeur fixe pour les cartes */
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 300px; /* Hauteur fixe pour les images */
+  object-fit: cover;
+}
+
+.movie-card-info {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-card-info h4 {
+  margin: 0;
+  font-size: 1em;
+  white-space: nowrap; /* Empêche le titre de se couper */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ajoute des "..." si le titre est trop long */
+}
+
+.movie-card-info button {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.movie-card-info button:hover {
+  background-color: #ff0b17;
+}
+
+/* Styles pour les pages admin, films, series, profile */
+.profile-page {
+  padding: 100px 5%; /* Espace pour la navbar */
+  min-height: 100vh;
+  color: white;
+  background-color: #141414;
+}
+
+.profile-page h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.profile-page h3 {
+  font-size: 1.8em;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #333;
+  color: white;
+  font-size: 1em;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #aaa;
+}

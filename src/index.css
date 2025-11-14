@@ -1,0 +1,25 @@
+:root {
+  --primary-color: #e50914; /* Rouge Netflix */
+  --background-color: #141414; /* Fond noir/gris */
+  --text-color: #ffffff;
+  --card-background: #222222;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden; /* Empêche le scroll horizontal sur la page */
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}

@@ -1,0 +1,60 @@
+Projet MoovFlix - Frontend (React + Vite)
+
+Ce projet est l'interface utilisateur (frontend) de l'application de streaming AniméFlix. Il est construit avec React et utilise Vite.js comme outil de build.
+
+Il est conçu pour communiquer avec un backend séparé (le dossier stream-api) qui gère les utilisateurs, les films, les séries et les favoris.
+
+Prérequis
+
+Avant de lancer le projet, vous devez avoir Node.js (version 18 ou supérieure) et npm installés sur votre machine.
+
+Installation
+
+Suivez ces étapes pour installer les dépendances du projet :
+
+Ouvrez un terminal dans ce dossier (streaming).
+
+Exécutez la commande suivante pour installer tous les paquets nécessaires (React, Axios, etc.) :
+
+npm install
+
+
+⚠️ Important : Connexion au Backend
+
+Ce frontend est inutile s'il n'est pas connecté au backend (stream-api).
+
+Assurez-vous que le serveur backend (stream-api) est en cours d'exécution (généralement avec npm run dev dans son propre terminal).
+
+Vérifiez l'URL de l'API :
+
+Ouvrez le fichier src/services/api.js.
+
+Assurez-vous que la baseURL correspond à l'adresse de votre serveur backend.
+
+Par défaut, elle devrait être réglée sur :
+
+const apiClient = axios.create({
+  baseURL: 'http://localhost:4000', // (ou 4000/api si vous avez un préfixe)
+});
+
+
+Lancement
+
+Une fois les dépendances installées et le backend lancé :
+
+Lancez le serveur de développement du frontend (Vite) :
+
+npm run dev
+
+
+Ouvrez votre navigateur et allez à l'adresse indiquée (généralement http://localhost:5174).
+
+Dépendances Clés
+
+Ce projet utilise plusieurs bibliothèques importantes :
+
+react : Bibliothèque principale pour construire l'interface.
+
+react-router-dom : Gère la navigation entre les différentes pages (Accueil, Login, Profil, Admin, etc.).
+
+axios : Permet de faire les requêtes HTTP (appels API) vers le serveur backend pour récupérer les films, se connecter, etc.

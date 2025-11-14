@@ -2,13 +2,13 @@ const request = require('supertest');
 const app = require('../app');
 const prisma = require('../config/postgres');
 const bcrypt = require('bcrypt');
-// --- CORRECTION ICI ---
-const { mongoose } = require('../config/mongo'); // On importe mongoose
-// --- FIN CORRECTION ---
+
+const { mongoose } = require('../config/mongo'); 
+
 
 let adminToken;
 
-// ---- CONFIGURATION GLOBALE ----
+
 beforeAll(async () => {
   await prisma.user.deleteMany({});
   await prisma.film.deleteMany({});
@@ -33,26 +33,25 @@ beforeAll(async () => {
   adminToken = loginRes.body.accessToken;
 });
 
-// --- CORRECTION ICI ---
-// On ferme TOUTES les connexions à la fin
+
 afterAll(async () => {
   await prisma.$disconnect();
   await mongoose.disconnect();
 });
-// --- FIN CORRECTION ---
 
 
-// --- DÉBUT DES TESTS ---
+
+
 describe('API des Films - /films', () => {
 
-  // TEST 1 : Route Publique
+  
   it('devrait autoriser l\'accès public à GET /films', async () => {
     const res = await request(app).get('/films');
     expect(res.statusCode).toEqual(200);
     expect(res.body).toBeInstanceOf(Array);
   });
 
-  // TEST 2 : Route Protégée (sans token)
+ 
   it('devrait refuser POST /films si aucun token n\'est fourni', async () => {
     const res = await request(app)
       .post('/films')
@@ -66,7 +65,6 @@ describe('API des Films - /films', () => {
     expect(res.statusCode).toEqual(401);
   });
 
-  // TEST 3 : Route Protégée (avec token Admin)
   it('devrait autoriser POST /films avec un token admin valide', async () => {
     const res = await request(app)
       .post('/films')

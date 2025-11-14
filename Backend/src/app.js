@@ -20,14 +20,13 @@ const filmRoutes = require("./routes/film.routes");
 const serieRoutes = require("./routes/serie.routes");
 const favorisRoutes = require("./routes/favoris.routes");
 
-// --- CORRECTION IMPORT MONGO ---
-// On n'importe QUE mongoose (plus besoin de connectDB ici)
+
 const { mongoose } = require("./config/mongo"); 
-// --- FIN CORRECTION ---
+
 
 const app = express();
 
-// Middlewares
+
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(cors(corsOptions));
@@ -35,10 +34,7 @@ app.use(globalRateLimiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ❌ On ne se connecte PAS à MongoDB ici
-// connectDB(); // <-- LIGNE SUPPRIMÉE
 
-// GraphQL Server
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
@@ -48,17 +44,16 @@ apolloServer.start().then(() => {
   apolloServer.applyMiddleware({ app, path: "/graphql" });
 });
 
-// --- Route pour la documentation Swagger ---
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
 
-// REST API Routes
+
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/films", filmRoutes);
 app.use("/series", serieRoutes);
 app.use("/favoris", favorisRoutes);
 
-// Error Handler
 app.use(errorHandler);
 
 module.exports = app;

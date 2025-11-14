@@ -1,8 +1,4 @@
-// stream-api/src/swaggerDef.js
 
-// Ceci est la définition manuelle de TOUTE ton API.
-// J'ai remplacé tous les guillemets simples par des backticks (`)
-// pour corriger l'erreur de syntaxe 'l'entrée'.
 
 const swaggerDefinition = {
   openapi: '3.0.0',
@@ -88,9 +84,9 @@ const swaggerDefinition = {
       }
     }
   },
-  // --- OBJET 'paths' OÙ TOUTES LES ROUTES SONT DÉFINIES ---
+ 
   paths: {
-    // --- AUTH ---
+    
     '/auth/register': {
       post: {
         tags: ['Auth'],
@@ -132,7 +128,7 @@ const swaggerDefinition = {
         responses: { '200': { description: `Profil de l'utilisateur`, content: { 'application/json': { schema: { $ref: '#/components/schemas/User' } } } }, '401': { description: `Non autorisé` } }
       }
     },
-    // --- FILMS ---
+   
     '/films': {
       get: {
         tags: ['Films'],
@@ -172,7 +168,7 @@ const swaggerDefinition = {
         responses: { '204': { description: `Film supprimé` }, '401': { description: `Non autorisé` }, '403': { description: `Interdit` }, '404': { description: `Film non trouvé` } }
       }
     },
-    // --- SERIES ---
+
     '/series': {
       get: {
         tags: ['Series'],
@@ -236,12 +232,12 @@ const swaggerDefinition = {
         tags: ['Favoris'],
         summary: `Supprimer un favori par son ID (de MongoDB)`,
         security: [{ bearerAuth: [] }],
-        // --- C'EST LA LIGNE CORRIGÉE ---
+        
         parameters: [{ in: 'path', name: 'id', schema: { type: 'string' }, required: true, description: `L'ID MongoDB (_id) de l'entrée favori` }],
         responses: { '204': { description: `Favori supprimé` }, '401': { description: `Non autorisé` }, '404': { description: `Favori non trouvé` } }
       }
     },
-    // --- USERS ---
+   
     '/users': {
       get: {
         tags: ['Users'],
@@ -274,7 +270,7 @@ const swaggerDefinition = {
         responses: { '204': { description: `Utilisateur supprimé` }, '401': { description: `Non autorisé` }, '403': { description: `Interdit` }, '404': { description: `Utilisateur non trouvé` } }
       }
     }
-  } // <--- 'paths' se termine ici
+  } 
 };
 
 module.exports = swaggerDefinition;

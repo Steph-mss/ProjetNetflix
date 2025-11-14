@@ -1,20 +1,19 @@
-// stream-api/models/Favoris.mongo.js
 const mongoose = require('mongoose');
 
 const favorisSchema = new mongoose.Schema({
   userId: {
-    type: Number, // L'ID de PostgreSQL
+    type: Number, 
     required: true,
-    index: true, // Bon pour les performances de recherche
+    index: true, 
   },
-  sqlId: { // L'ID du film/série
+  sqlId: { 
     type: Number,
     required: true,
   },
   type: {
     type: String,
     required: true,
-    enum: ['Film', 'Serie'] // <-- LA CORRECTION (avec majuscules)
+    enum: ['Film', 'Serie'] 
   }
 }, { timestamps: true });
 

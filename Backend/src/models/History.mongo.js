@@ -19,7 +19,7 @@ const HistorySchema = new mongoose.Schema({
     default: Date.now,
   },
   duree: {
-    type: Number, // in minutes
+    type: Number, 
   },
   metadata: {
     type: Object,

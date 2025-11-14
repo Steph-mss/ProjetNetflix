@@ -1,26 +1,25 @@
 const request = require('supertest');
 const app = require('../app');
 const prisma = require('../config/postgres');
-// --- CORRECTION ICI ---
-const { mongoose } = require('../config/mongo'); // On importe mongoose
-// --- FIN CORRECTION ---
+
+const { mongoose } = require('../config/mongo'); 
 
 
-// ---- NETTOYAGE ----
+
+
 beforeEach(async () => {
   await prisma.user.deleteMany({});
 });
 
-// --- CORRECTION ICI ---
-// On ferme TOUTES les connexions à la fin
+
 afterAll(async () => {
   await prisma.$disconnect();
   await mongoose.disconnect(); 
 });
-// --- FIN CORRECTION ---
 
 
-// --- TEST 1 : INSCRIPTION (route publique) ---
+
+
 describe('POST /auth/register', () => {
   
   it('devrait créer un nouvel utilisateur et renvoyer 201', async () => {
@@ -47,7 +46,7 @@ describe('POST /auth/register', () => {
 });
 
 
-// --- TEST 2 : CONNEXION (route publique) ---
+
 describe('POST /auth/login', () => {
   
   beforeEach(async () => {

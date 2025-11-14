@@ -1,4 +1,3 @@
-// stream-api/swaggerConfig.js
 import swaggerJsdoc from 'swagger-jsdoc';
 
 const options = {
@@ -11,10 +10,10 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:4000', // Votre serveur de dev
+        url: 'http://localhost:4000', 
       },
     ],
-    // Définit comment l'authentification (token) fonctionne
+    
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -30,8 +29,8 @@ const options = {
       },
     ],
   },
-  // Fichiers à scanner pour trouver les commentaires Swagger
-  apis: ['./routes/*.js'], // Pointez vers vos fichiers de routes
+  
+  apis: ['./routes/*.js'], 
 };
 
 const specs = swaggerJsdoc(options);

@@ -11,13 +11,13 @@ Le projet repose sur une architecture moderne composée d’un **Frontend React/
 La structure du projet est organisée autour de deux dossiers principaux :
 
 ```
-stream-api/     → Backend (Node.js, Express, Prisma, MongoDB)
-streaming/      → Frontend (React, Vite)
+Backend/     → Backend (Node.js, Express, Prisma, MongoDB)
+Frontend/      → Frontend (React, Vite)
 ```
 
 ---
 
-# 🚀 1. Backend – `stream-api/`
+# 🚀 1. Backend – `Backend/`
 
 Le Backend gère :
 
@@ -40,7 +40,7 @@ Le Backend gère :
 
 ## 🔧 Étape 1 : Installation
 
-Dans le dossier `stream-api/` :
+Dans le dossier `backend/` :
 
 ```bash
 npm install
@@ -50,7 +50,7 @@ npm install
 
 ## 🗃️ Étape 2 : Configuration du fichier `.env`
 
-Créez un fichier `.env` à la racine de `stream-api/` :
+Créez un fichier `.env` à la racine de `Backend/` :
 
 ```
 # --- Base de données PostgreSQL (Prisma) ---
@@ -94,7 +94,7 @@ Documentation Swagger :
 
 ---
 
-# 💻 2. Frontend – `streaming/`
+# 💻 2. Frontend – `Frontend/`
 
 Le Frontend est développé avec **React + Vite** et communique avec l’API via **Axios**.
 
@@ -167,5 +167,6 @@ L’application démarre sur :
 * Vite
 * Axios
 * React Router
+
 
 
